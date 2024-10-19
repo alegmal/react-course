@@ -7,18 +7,23 @@ import { CORE_CONCEPTS, EXAMPLES } from "./data";
 import headerImage from "./assets/react-core-concepts.png";
 
 function App() {
-  // const clickHandler = (title) => {
-  //   console.log(title);
-  //   console.log(description);
-  //   console.log(code);
-  // };
+  const [currentTitle, setTitle] = useState(null);
+  const [currentDescription, setDescription] = useState(null);
+  const [currentCode, setCode] = useState(null);
 
-  const initialExample = EXAMPLES[Object.keys(EXAMPLES)[0]];
-  const [currentTitle, setTitle] = useState(initialExample.title);
-  const [currentDescription, setDescription] = useState(
-    initialExample.description
-  );
-  const [currentCode, setCode] = useState(initialExample.code);
+  let tabContent = <p>Please select a topic.</p>;
+
+  if (currentTitle) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{currentTitle}</h3>
+        <p>{currentDescription}</p>
+        <pre>
+          <code>{currentCode}</code>
+        </pre>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -53,13 +58,14 @@ function App() {
               </Button>
             ))}
           </menu>
-          <div id="tab-content">
+          {tabContent}
+          {/* <div id="tab-content">
             <h3>{currentTitle}</h3>
             <p>{currentDescription}</p>
             <pre>
               <code>{currentCode}</code>
             </pre>
-          </div>
+          </div> */}
         </section>
       </main>
     </div>
