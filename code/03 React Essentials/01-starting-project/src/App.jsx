@@ -35,15 +35,13 @@ function App() {
             {CORE_CONCEPTS.map((concept) => (
               <Concept
                 key={concept.title}
-                title={concept.title}
-                description={concept.description}
-                image={concept.image}
+                {...concept}
               />
             ))}
           </ul>
         </section>
         <section id="examples">
-          <h2>{currentTitle}</h2>
+          <h2>Examples</h2>
           <menu>
             {Object.keys(EXAMPLES).map((example) => (
               <Button
@@ -53,6 +51,7 @@ function App() {
                   setDescription(EXAMPLES[example].description),
                   setCode(EXAMPLES[example].code)
                 )}
+                isSelected={currentTitle === EXAMPLES[example].title}
               >
                 {EXAMPLES[example].title}
               </Button>
