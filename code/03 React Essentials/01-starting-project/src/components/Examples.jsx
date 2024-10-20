@@ -41,13 +41,6 @@ export default function Examples() {
         ))}
       </menu>
       {tabContent}
-      {/* <div id="tab-content">
-            <h3>{currentTitle}</h3>
-            <p>{currentDescription}</p>
-            <pre>
-              <code>{currentCode}</code>
-            </pre>
-          </div> */}
     </section>
   );
 }
