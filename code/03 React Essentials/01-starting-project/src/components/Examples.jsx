@@ -2,6 +2,7 @@ import Button from "./Button";
 
 import { useState } from "react";
 import { EXAMPLES } from "../data";
+import Section from "./Section";
 
 export default function Examples() {
   const [currentTitle, setTitle] = useState(null);
@@ -23,8 +24,7 @@ export default function Examples() {
   }
 
   return (
-    <section id="examples">
-      <h2>Examples</h2>
+    <Section id="examples" title="Examples">
       <menu>
         {Object.keys(EXAMPLES).map((example) => (
           <Button
@@ -41,6 +41,6 @@ export default function Examples() {
         ))}
       </menu>
       {tabContent}
-    </section>
+    </Section>
   );
 }
