@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import Concept from "./components/Concept";
 import Button from "./components/Button";
 
@@ -26,7 +26,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <Header image={headerImage} />
       <main>
         <section id="core-concepts">
@@ -67,7 +67,7 @@ function App() {
           </div> */}
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
