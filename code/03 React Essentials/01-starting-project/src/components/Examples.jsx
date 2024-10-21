@@ -3,6 +3,7 @@ import Button from "./Button";
 import { useState } from "react";
 import { EXAMPLES } from "../data";
 import Section from "./Section";
+import Tabs from "./Tabs";
 
 export default function Examples() {
   const [currentTitle, setTitle] = useState(null);
@@ -25,8 +26,8 @@ export default function Examples() {
 
   return (
     <Section id="examples" title="Examples">
-      <menu>
-        {Object.keys(EXAMPLES).map((example) => (
+      <Tabs
+        buttons={Object.keys(EXAMPLES).map((example) => (
           <Button
             key={EXAMPLES[example].title}
             onClick={() => (
@@ -39,8 +40,9 @@ export default function Examples() {
             {EXAMPLES[example].title}
           </Button>
         ))}
-      </menu>
-      {tabContent}
+      >
+        {tabContent}
+      </Tabs>
     </Section>
   );
 }
