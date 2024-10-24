@@ -4,21 +4,22 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export function GameBoard() {
+function GameBoard() {
   return (
     <ol id="game-board">
-      {initialGameBoard.map((row, rowIndex) => {
+      {initialGameBoard.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
-            {row.map((playerSymbol, colIndex) => {
-              <il key={colIndex}>
+            {row.map((playerSymbol, colIndex) => (
+              <li key={colIndex}>
                 <button>{playerSymbol}</button>
-              </il>;
-            })}
+              </li>
+            ))}
           </ol>
-          ;
-        </li>;
-      })}
+        </li>
+      ))}
     </ol>
   );
 }
+
+export default GameBoard

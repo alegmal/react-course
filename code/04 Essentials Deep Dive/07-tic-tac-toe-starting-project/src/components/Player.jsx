@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Player({ name, symbol }) {
+function Player({ name, symbol }) {
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(name);
 
@@ -26,3 +26,5 @@ export function Player({ name, symbol }) {
     </li>
   );
 }
+
+export default Player
