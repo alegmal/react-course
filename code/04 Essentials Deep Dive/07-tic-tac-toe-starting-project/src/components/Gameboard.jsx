@@ -6,18 +6,23 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const GameBoard = ({ onSelectSquare, activeSymbol }) => {
+export default function GameBoard({ onSelectSquare, activeSymbol }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   const clickHandle = (rowIndex, colIndex) => {
     setGameBoard((prevBoardState) => {
-      const newBoardState = [
-        ...prevBoardState.map((innerArray) => [...innerArray]),
-      ];
-      newBoardState[rowIndex][colIndex] = activeSymbol;
-      return newBoardState;
+      if (prevBoardState[rowIndex][colIndex] != null) {
+        return prevBoardState;
+      } else {
+        const newBoardState = [
+          ...prevBoardState.map((innerArray) => [...innerArray]),
+        ];
+        newBoardState[rowIndex][colIndex] = activeSymbol;
+
+        onSelectSquare();
+        return newBoardState;
+      }
     });
-    onSelectSquare();
   };
 
   return (
@@ -37,6 +42,4 @@ const GameBoard = ({ onSelectSquare, activeSymbol }) => {
       ))}
     </ol>
   );
-};
-
-export default GameBoard;
+}
