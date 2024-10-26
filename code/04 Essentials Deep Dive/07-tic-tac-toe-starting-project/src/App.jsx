@@ -19,9 +19,6 @@ function App() {
 
   const handleSelectSquare = (rowIndex, colIndex) => {
     setGameTurns((prevTurns) => {
-      if (prevTurns.length === 9) {
-        return prevTurns;
-      }
 
       const updatedGameTurns = [
         { square: { row: rowIndex, col: colIndex }, player: activePlayer },
