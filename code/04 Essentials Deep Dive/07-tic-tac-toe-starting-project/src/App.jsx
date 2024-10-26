@@ -15,7 +15,6 @@ function deriveCurrentPlayer(turns) {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-
   const activePlayer = deriveCurrentPlayer(gameTurns);
 
   const handleSelectSquare = (rowIndex, colIndex) => {
