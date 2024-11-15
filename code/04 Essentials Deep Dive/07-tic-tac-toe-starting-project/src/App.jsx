@@ -21,22 +21,7 @@ function deriveCurrentPlayer(turns) {
   return currentPlayer;
 }
 
-function App() {
-  const [players, setPlayers] = useState({
-    X: "Player1",
-    Y: "Player1",
-  });
-  const [gameTurns, setGameTurns] = useState([]);
-  const activePlayer = deriveCurrentPlayer(gameTurns);
-
-  let gameBoard = [...initialGameBoard.map((array) => [...array])];
-  for (const turn of gameTurns) {
-    const { square, player } = turn;
-    const { col, row } = square;
-
-    gameBoard[row][col] = player;
-  }
-
+const getWinner = (gameBoard, players) => {
   let winner;
   for (const combination of WINNING_COMBINATIONS) {
     const firstSquareSymbol =
@@ -54,6 +39,31 @@ function App() {
       winner = players[firstSquareSymbol];
     }
   }
+
+  return winner;
+};
+
+const initializeGameBoard = (initialGameBoard, gameTurns) => {
+  let gameBoard = [...initialGameBoard.map((array) => [...array])];
+  for (const turn of gameTurns) {
+    const { square, player } = turn;
+    const { col, row } = square;
+
+    gameBoard[row][col] = player;
+  }
+
+  return gameBoard
+};
+
+function App() {
+  const [players, setPlayers] = useState({
+    X: "Player1",
+    O: "Player2",
+  });
+  const [gameTurns, setGameTurns] = useState([]);
+  const activePlayer = deriveCurrentPlayer(gameTurns);
+  const gameBoard = initializeGameBoard(initialGameBoard, gameTurns);
+  const winner = getWinner(gameBoard, players);
 
   const draw = gameTurns.length === 9 && !winner;
 
@@ -86,13 +96,13 @@ function App() {
       <div id="game-container">
         <ol id="players" className="highlight-player">
           <Player
-            name="Player 1"
+            name={players.X}
             symbol="X"
             isActive={activePlayer === "X"}
             onChangeName={handlePlayerNameChange}
           />
           <Player
-            name="Player 2"
+            name={players.O}
             symbol="O"
             isActive={activePlayer === "O"}
             onChangeName={handlePlayerNameChange}
